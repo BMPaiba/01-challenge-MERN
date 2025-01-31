@@ -8,9 +8,9 @@ export class AuthController {
     res.json(result);
   }
 
-  static register(req: Request, res: Response) {
-    const { email, password } = req.body;
-    const result = AuthService.register(email, password);
+  static async register(req: Request, res: Response) {
+    const { firstName, lastName, email, password } = req.body;
+    const result = await AuthService.register( firstName, lastName, email, password);
     res.json(result);
   }
 }

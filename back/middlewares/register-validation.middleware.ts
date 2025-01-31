@@ -1,11 +1,11 @@
 import type { Request, Response, NextFunction } from "express";
-import { userValidationSchema } from "@/validations/user";
+import { userRegisterValidation } from "@/validations/user-register";
 
 import { z } from "zod";
 
-export const validateUserMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+export const validateUserRegisterMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   try {
-    userValidationSchema.parse(req.body);
+    userRegisterValidation.parse(req.body);
     next();
   } catch (error) {
     if (error instanceof z.ZodError) {

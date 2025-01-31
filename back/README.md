@@ -11,7 +11,7 @@
 - Nodemon
 - Zod
 - Mongoose
-- 
+- bcrypt
 
 ### Package Manager
 
