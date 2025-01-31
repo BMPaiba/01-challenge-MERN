@@ -13,7 +13,9 @@ export class AuthService {
       if (!isMatch) {
         throw new Error("Contraseña incorrecta");
       }
-      return { message: "Login exitoso 🚀", user };
+      const { password: _, ...userWithoutPassword } = user.toObject();
+
+      return { message: "Login exitoso 🚀", user: userWithoutPassword  };
     } catch (error: any) {
       throw new Error(error.message || "Error en el login");
     }

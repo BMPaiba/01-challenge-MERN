@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { userRegisterValidation } from "@/validations/user-register";
+import { userRegisterValidation } from "@/validations/user-register.validation";
 
 import { z } from "zod";
 
