@@ -5,7 +5,7 @@ export class EmployeesController {
 
   static getAllEmployees(req: Request, res: Response) {
     const { email, password } = req.body;
-    const result = EmployeesService.login(email, password);
+    const result = EmployeesService.getAllEmployees(email, password);
     res.json(result);
   }
   

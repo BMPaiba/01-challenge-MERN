@@ -1,12 +1,6 @@
 export class FeedbackService {
-    static login(email: string, password: string) {
-      // Lógica de autenticación
-      return { message: "Login exitoso 🚀" };
-    }
-  
-    static register(email: string, password: string) {
-      // Lógica de registro
-      return { message: "Usuario registrado ✅" };
-    }
+  static postFeedback(email: string, password: string) {
+    // Lógica de autenticación
+    return { message: "Login exitoso 🚀" };
   }
-  
+}
