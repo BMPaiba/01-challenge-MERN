@@ -3,7 +3,6 @@ import { ReportsController } from "./reports.controller";
 
 const router = Router();
 
-router.post("/login", ReportsController.login);
-router.post("/register", ReportsController.register);
+router.post("/employee/:id", ReportsController.reportByEmployeeId);
 
 export default router;
