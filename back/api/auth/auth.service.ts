@@ -1,5 +1,6 @@
 import userModel from "@/models/user.model";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export class AuthService {
   static async login(email: string, password: string) {
@@ -15,7 +16,15 @@ export class AuthService {
       }
       const { password: _, ...userWithoutPassword } = user.toObject();
 
-      return { message: "Login exitoso 🚀", user: userWithoutPassword  };
+      if (!process.env.JWT_SECRET) {
+        throw new Error("JWT_SECRET is not defined in environment variables");
+      }
+
+      const token = jwt.sign({ id: user._id, email, role: user.role }, process.env.JWT_SECRET, {
+        expiresIn: "24h",
+      });
+
+      return { message: "Login exitoso 🚀", user: userWithoutPassword, jwt: token };
     } catch (error: any) {
       throw new Error(error.message || "Error en el login");
     }

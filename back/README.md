@@ -12,6 +12,7 @@
 - Zod
 - Mongoose
 - bcrypt
+- jasonwebtoken / jwt
 
 ### Package Manager
 
