@@ -2,15 +2,34 @@ import type { Request, Response } from "express";
 import { EvaluationsService } from "./evaluations.service";
 
 export class EvaluationsController {
-  static login(req: Request, res: Response) {
-    const { email, password } = req.body;
-    const result = EvaluationsService.login(email, password);
+  
+  static createEvaluation(req: Request, res: Response) {
+    const evaluationData = req.body;
+    const result = EvaluationsService.createEvaluation(evaluationData);
+    res.status(201).json(result);
+  }
+
+  static getEvaluationById(req: Request, res: Response) {
+    const { id } = req.params;
+    const result = EvaluationsService.getEvaluationById(id);
     res.json(result);
   }
 
-  static register(req: Request, res: Response) {
-    const { email, password } = req.body;
-    const result = EvaluationsService.register(email, password);
+  static updateEvaluation(req: Request, res: Response) {
+    const { id } = req.params;
+    const updatedData = req.body;
+    const result = EvaluationsService.updateEvaluation(id, updatedData);
+    res.json(result);
+  }
+
+  static getEvaluationsByEmployeeId(req: Request, res: Response) {
+    const { id } = req.params;
+    const result = EvaluationsService.getEvaluationsByEmployeeId(id);
+    res.json(result);
+  }
+
+  static getAllEvaluations(req: Request, res: Response) {
+    const result = EvaluationsService.getAllEvaluations();
     res.json(result);
   }
 }
