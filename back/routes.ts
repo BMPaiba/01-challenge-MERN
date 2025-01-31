@@ -1,9 +1,9 @@
-import { Router } from "express";
-import authRoutes from "./auth/auth.routes";
-import employeesRoutes from "./employees/employees.routes";
-import evaluationsRoutes from "./evaluations/evaluations.routes";
-import feedbackRoutes from "./feedback/feedback.routes";
-import reportsRoutes from "./reports/reports.routes";
+import { Router } from "express"; 
+import authRoutes from "./api/auth/auth.routes";
+import employeesRoutes from "./api/employees/employees.routes";
+import evaluationsRoutes from "./api/evaluations/evaluations.routes";
+import feedbackRoutes from "./api/feedback/feedback.routes";
+import reportsRoutes from "./api/reports/reports.routes";
 
 const router = Router();
 

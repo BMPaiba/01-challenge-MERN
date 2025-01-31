@@ -5,15 +5,13 @@ import apiRoutes from "./routes";
 const app = express();
 const port = 3000;
 
-// Middlewares
 app.use(morgan("dev"));
 app.use(express.json());
 
 app.get("/api", (req, res) => {
-  res.send("HOLA MUNDO!");
+  res.send("<h1>API is running</h1>");
 });
 
-// Rutas
 app.use("/api", apiRoutes);
 
 app.listen(port, () => {
