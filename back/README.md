@@ -1,15 +1,22 @@
-# back
+## Skills
 
-To install dependencies:
+- NodeJS
+- ExpressJS
+- Mongo
+- Docker
 
-```bash
-bun install
-```
+### Libraries
 
-To run:
+- Morgan
+- Nodemon
+- Zod
+- Mongoose
+- 
 
-```bash
-bun run index.ts
-```
+### Package Manager
 
-This project was created using `bun init` in bun v1.1.33. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+- bun
+
+### Despligue
+
+- Google Cloud Run
