@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import apiRoutes from "./routes";
 import dotenv from "dotenv";
 
-// Cargar las variables de entorno
 dotenv.config();
 
 const app = express();
@@ -24,7 +23,7 @@ const connectDB = () => {
     });
 };
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.send("<h1>API is running</h1>");
 });
 
