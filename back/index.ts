@@ -1,15 +1,20 @@
 import express from "express";
 import morgan from "morgan";
+import apiRoutes from "./routes";
 
 const app = express();
 const port = 3000;
 
-// Middleware para registrar las peticiones en consola
-app.use(morgan("dev")); // "dev" es un formato predefinido
+// Middlewares
+app.use(morgan("dev"));
+app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("HOLA MUNDO!");
 });
+
+// Rutas
+app.use("/api", apiRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
