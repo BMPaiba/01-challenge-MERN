@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "@/store/auth/authSlice";
+import authReducer from "@/features/auth/store/auth/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -7,6 +7,5 @@ export const store = configureStore({
   },
 });
 
-// Tipos para TypeScript
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

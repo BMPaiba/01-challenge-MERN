@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { postLoginApi } from "../actions/login.action";
-import { login } from "@/store/auth/authSlice";
+import { login } from "@/features/auth/store/auth/authSlice";
 import Swal from "sweetalert2";
 
 interface LoginForm {
@@ -16,7 +16,9 @@ interface LoginForm {
 }
 
 export function FormLogin() {
+
   const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,

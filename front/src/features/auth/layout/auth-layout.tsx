@@ -2,7 +2,7 @@ import  { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie"; // Importamos js-cookie
-import { login } from "../../../store/auth/authSlice";
+import { login } from "../store/auth/authSlice";
 import { RootState } from "@/store/store";
 
 export const AuthLayout = () => {

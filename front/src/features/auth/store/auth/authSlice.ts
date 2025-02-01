@@ -22,7 +22,7 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       
-      Cookies.set("jwt", action.payload.token, { expires: 7 });  
+      Cookies.set("jwt", action.payload.token, { expires: 1 });  
     },
     logout: (state) => {
       state.isAuthenticated = false;

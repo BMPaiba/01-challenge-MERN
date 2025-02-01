@@ -1,8 +1,8 @@
 import { NavLink, Outlet, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { logout } from "@/store/auth/authSlice";
+import { logout } from "@/features/auth/store/auth/authSlice";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/lib/hooks/useAuth";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useEffect } from "react";
 
 export const DashboardLayout = () => {

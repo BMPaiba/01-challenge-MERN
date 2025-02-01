@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import Cookies from "js-cookie";
-import { RootState } from "@/store/store";
-import { login, logout } from "@/store/auth/authSlice";
+import { login, logout } from "@/features/auth/store/auth/authSlice";
+import { useAppSelector } from "../../../hooks/useStore";
 
 export const useAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
+    const { isAuthenticated, user } = useAppSelector((state) => state.auth);
+  
   const [isLoading, setIsLoading] = useState(true);
 
   const getJwtFromCookies = () => Cookies.get("jwt");
