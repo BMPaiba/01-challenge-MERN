@@ -2,9 +2,14 @@ import { useAppSelector } from "@/hooks/useStore";
 
 export default function Dashboard() {
 
-  const { isAuthenticated, user } = useAppSelector((state) => state.auth);
+  const { isAuthenticated, user , token} = useAppSelector((state) => state.auth);
 
-  console.log({isAuthenticated, user});
+  console.log({isAuthenticated, user, token});
 
-  return <div>Login</div>;
+
+  return <div>
+    {JSON.stringify({isAuthenticated, user: user})}
+  </div>;
 }
+
+

@@ -11,7 +11,6 @@ export const AuthLayout = () => {
 
   const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
 
-  console.log({isAuthenticated, user})
 
   const getJwtFromCookies = () => {
     return Cookies.get("jwt"); 

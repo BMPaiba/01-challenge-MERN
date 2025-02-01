@@ -5,10 +5,9 @@ import { Label } from "@/components/ui/label";
 import { loginSchema } from "@/lib/validations/login.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { postLoginApi } from "../actions/login.action";
-import { login } from "@/features/auth/store/auth/authSlice";
 import Swal from "sweetalert2";
+import { useAuthActions } from "../hooks/useAuthActions";
 
 interface LoginForm {
   email: string;
@@ -16,8 +15,7 @@ interface LoginForm {
 }
 
 export function FormLogin() {
-
-  const dispatch = useDispatch();
+  const { loginUser } = useAuthActions();
 
   const {
     register,
@@ -30,13 +28,13 @@ export function FormLogin() {
   const onSubmit = async (data: LoginForm) => {
     try {
       const loginResponse = await postLoginApi(data);
-      dispatch(login({ user: loginResponse.user, token: loginResponse.jwt }));
+      loginUser(loginResponse.user.email, loginResponse.jwt);
     } catch (error) {
       console.error("Error during login:", error);
       Swal.fire({
         title: "Usuario o contraseña incorrecta!",
         icon: "error",
-        draggable: true
+        draggable: true,
       });
     }
   };
