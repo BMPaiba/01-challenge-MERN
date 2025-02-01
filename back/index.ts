@@ -1,8 +1,9 @@
 import express from "express";
 import morgan from "morgan";
-import mongoose from "mongoose";
 import apiRoutes from "./routes";
 import dotenv from "dotenv";
+import { connectDB } from "./lib/database/connectDB";
+import cors from "cors";
 
 dotenv.config();
 
@@ -11,17 +12,11 @@ const port = 3000;
 
 app.use(morgan("dev"));
 app.use(express.json());
-
-const connectDB = () => {
-  mongoose.set("strictQuery", true);
-  mongoose
-    .connect(process.env.MONGODB_URL || "")
-    .then(() => console.log("Connected to Mongo DB"))
-    .catch((err) => {
-      console.error("failed to connect with mongo");
-      console.error(err);
-    });
-};
+app.use(cors({
+  origin: "http://localhost:5173", // Especificar el origen permitido (frontend)
+  methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
+  allowedHeaders: ["Content-Type", "Authorization"], // Encabezados permitidos
+}));
 
 app.get("/", (req, res) => {
   res.send("<h1>API is running</h1>");
