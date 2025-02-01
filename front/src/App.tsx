@@ -18,7 +18,6 @@ function App() {
           <Route path="auth" element={<AuthLayout />}>
             <Route index element={<Login />} />
             <Route path="register" element={<Register />}>
-              {/* <Route path="new-user" element={<Register />} /> */}
             </Route>
           </Route>
 

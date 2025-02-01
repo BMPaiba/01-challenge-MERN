@@ -3,7 +3,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { postLoginApi } from "../actions/login.action";
 import { useDispatch } from "react-redux";
-import { login, logout } from "../store/authSlice";
+import { login, logout } from "../../../store/auth/authSlice";
+import { FormLogin } from "../components/form-login";
 
 interface IFormInput {
   email: string;
@@ -53,6 +54,7 @@ export default function Login() {
         <input type="submit" />
       </form>
       <button onClick={onLogout}>Logout</button>
+      <FormLogin />
     </div>
   );
 }
