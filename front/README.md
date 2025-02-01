@@ -10,6 +10,7 @@
 - Shadcn
 - React-hook-form
 - Zod
+- js-cookie for jwt
 
 
 ### Others
