@@ -9,12 +9,12 @@ export const useAuth = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
-  const [isLoading, setIsLoading] = useState(true); // ✅ Agregamos estado de carga
+  const [isLoading, setIsLoading] = useState(true);
 
   const getJwtFromCookies = () => Cookies.get("jwt");
 
   useEffect(() => {
-    if (!isLoading) return; // ✅ Evita que se vuelva a ejecutar innecesariamente
+    if (!isLoading) return;
 
     const jwt = getJwtFromCookies();
 
@@ -22,7 +22,7 @@ export const useAuth = () => {
       try {
         const savedUser = JSON.parse(localStorage.getItem("user") || "{}");
         if (savedUser?.id) {
-          dispatch(login(savedUser)); // Guardar en Redux
+          dispatch(login(savedUser));
         }
       } catch (error) {
         console.error("Error al recuperar el usuario:", error);
@@ -32,7 +32,7 @@ export const useAuth = () => {
       navigate("/auth", { replace: true });
     }
 
-    setIsLoading(false); // ✅ Marcamos como terminado el proceso de autenticación
+    setIsLoading(false);
   }, [dispatch, navigate, isLoading]);
 
   return { isAuthenticated, user, isLoading };

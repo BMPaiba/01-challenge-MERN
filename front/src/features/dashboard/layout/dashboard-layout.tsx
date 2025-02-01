@@ -27,7 +27,6 @@ export const DashboardLayout = () => {
         <NavLink to="/auth">Login</NavLink>
         <Button onClick={() => dispatch(logout())}> Logout </Button>
       </nav>
-
       <Outlet />
     </div>
   );
