@@ -6,10 +6,9 @@ import { ModeToggle } from "@/components/common/mode-toggle";
 import { useAuthActions } from "@/features/auth/hooks/useAuthActions";
 
 export const DashboardLayout = () => {
-
   const navigate = useNavigate();
   const { logoutUser } = useAuthActions();
-  const { isAuthenticated, isLoading , user} = useAuth();
+  const { isAuthenticated, isLoading, user } = useAuth();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -27,9 +26,12 @@ export const DashboardLayout = () => {
         <NavLink to="/">Dashboard</NavLink>
         <NavLink to="/auth">Login</NavLink>
         <ModeToggle />
-        <Button onClick={(logoutUser)}> Logout </Button>
+        <Button onClick={logoutUser}> Logout </Button>
       </nav>
       {JSON.stringify(user)}
+      {user?.role === "Admin" && <div>Admin</div>}
+      {user?.role === "Manager" && <div>Manager</div>}
+      {user?.role === "Employee" && <div>Employee</div>}
       <Outlet />
     </div>
   );

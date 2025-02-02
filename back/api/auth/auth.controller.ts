@@ -17,10 +17,10 @@ export class AuthController {
   }
 
   static async register(req: Request, res: Response) {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, role } = req.body;
 
     try {
-      const result = await AuthService.register(firstName, lastName, email, password);
+      const result = await AuthService.register({ firstName, lastName, email, password, role });
       res.json(result);
     } catch (error: any) {
       res.status(400).json({ message: "Error al registrar usuario", error: error.message });
