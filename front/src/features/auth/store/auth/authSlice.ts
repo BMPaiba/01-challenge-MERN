@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+import { User } from "../../interface/user.interface";
 
 interface AuthState {
   isAuthenticated: boolean;
-  user: string;
+  user: User | null;
   token: string;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
-  user: "",
+  user: null,
   token: "",
 };
 
@@ -17,10 +18,10 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<{ user: string; token: string }>) => {
+    login: (state, action: PayloadAction<{ user: User; token: string }>) => {
       if (!action.payload?.user || !action.payload?.token) {
         console.warn("Invalid payload, skipping login.");
-        return; 
+        return;
       }
       state.isAuthenticated = true;
       state.user = action.payload.user;
@@ -29,7 +30,7 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuthenticated = false;
-      state.user = "";
+      state.user = null;
       state.token = "";
       Cookies.remove("jwt");
     },

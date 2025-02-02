@@ -28,7 +28,7 @@ export function FormLogin() {
   const onSubmit = async (data: LoginForm) => {
     try {
       const loginResponse = await postLoginApi(data);
-      loginUser(loginResponse.user.email, loginResponse.jwt);
+      loginUser(loginResponse.user, loginResponse.jwt);
     } catch (error) {
       console.error("Error during login:", error);
       Swal.fire({

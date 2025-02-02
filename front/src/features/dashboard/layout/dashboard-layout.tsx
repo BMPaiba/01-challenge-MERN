@@ -1,15 +1,15 @@
 import { NavLink, Outlet, useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
-import { logout } from "@/features/auth/store/auth/authSlice";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { useEffect } from "react";
 import { ModeToggle } from "@/components/common/mode-toggle";
+import { useAuthActions } from "@/features/auth/hooks/useAuthActions";
 
 export const DashboardLayout = () => {
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
-  const { isAuthenticated, isLoading } = useAuth();
+  const { logoutUser } = useAuthActions();
+  const { isAuthenticated, isLoading , user} = useAuth();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -27,8 +27,9 @@ export const DashboardLayout = () => {
         <NavLink to="/">Dashboard</NavLink>
         <NavLink to="/auth">Login</NavLink>
         <ModeToggle />
-        <Button onClick={() => dispatch(logout())}> Logout </Button>
+        <Button onClick={(logoutUser)}> Logout </Button>
       </nav>
+      {JSON.stringify(user)}
       <Outlet />
     </div>
   );
