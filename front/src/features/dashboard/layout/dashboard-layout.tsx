@@ -28,7 +28,6 @@ export const DashboardLayout = () => {
         <ModeToggle />
         <Button onClick={logoutUser}> Logout </Button>
       </nav>
-      {JSON.stringify(user)}
       {user?.role === "Admin" && <div>Admin</div>}
       {user?.role === "Manager" && <div>Manager</div>}
       {user?.role === "Employee" && <div>Employee</div>}

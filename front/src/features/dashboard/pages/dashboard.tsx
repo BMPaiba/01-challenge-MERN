@@ -6,7 +6,7 @@ export default function Dashboard() {
 
 
   return <div>
-    {JSON.stringify({isAuthenticated, user: user})}
+    {JSON.stringify(user?.email)}
   </div>;
 }
 

@@ -5,14 +5,22 @@ import { User } from "../../interface/user.interface";
 interface AuthState {
   isAuthenticated: boolean;
   user: User | null;
-  token: string;
 }
 
-const initialState: AuthState = {
+const defaultState: AuthState = {
   isAuthenticated: false,
   user: null,
-  token: "",
 };
+
+const initialState: AuthState = (()=>{
+  const persistedState = localStorage.getItem("_redux_state_");
+  if (persistedState) {
+    const state = JSON.parse(persistedState);
+    console.log({state})
+    return state.auth;
+  }
+  return defaultState
+})()
 
 const authSlice = createSlice({
   name: "auth",
@@ -25,13 +33,11 @@ const authSlice = createSlice({
       }
       state.isAuthenticated = true;
       state.user = action.payload.user;
-      state.token = action.payload.token;
       Cookies.set("jwt", action.payload.token, { expires: 1 });
     },
     logout: (state) => {
       state.isAuthenticated = false;
       state.user = null;
-      state.token = "";
       Cookies.remove("jwt");
     },
   },
