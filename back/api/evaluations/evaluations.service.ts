@@ -1,6 +1,26 @@
+import { UserAdditionalServices } from "@/lib/services/user.services";
+import evaluationModel from "@/models/evaluation.model";
+import userModel from "@/models/user.model";
+
 export class EvaluationsService {
-  static createEvaluation(evaluationData: any) {
-    return { message: "Evaluación creada con éxito ✅", data: evaluationData };
+  static async createEvaluation(data: any ) {
+    try {
+      const employee = await UserAdditionalServices.userByEmail(data.employee);
+      const evaluator = await UserAdditionalServices.userByEmail(data.evaluator);
+      if (!employee || !evaluator) {
+        throw new Error("No se encontraron empleados o evaluadores");
+      }
+      data.employee = employee._id;
+      data.evaluator = evaluator._id;
+      const evaluation = await evaluationModel.create(data);
+      if (!evaluation) {
+        throw new Error("No se pudo crear la evaluación");
+      }
+      return evaluation;
+    } catch (error: any) {
+      console.log('no se pudo crear la evaluación', error.message)
+      throw new Error(error.message || "Error al crear la evaluación");
+    }
   }
 
   static getEvaluationById(id: string) {

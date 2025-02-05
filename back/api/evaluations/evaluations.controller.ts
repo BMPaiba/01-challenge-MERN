@@ -2,11 +2,14 @@ import type { Request, Response } from "express";
 import { EvaluationsService } from "./evaluations.service";
 
 export class EvaluationsController {
-  
-  static createEvaluation(req: Request, res: Response) {
+  static async createEvaluation(req: Request, res: Response) {
     const evaluationData = req.body;
-    const result = EvaluationsService.createEvaluation(evaluationData);
+    const result = await EvaluationsService.createEvaluation(evaluationData);
     res.status(201).json(result);
+    try {
+    } catch (error: any) {
+      res.status(400).json({ message: "Error al crear la evaluación", error: error.message });
+    }
   }
 
   static getEvaluationById(req: Request, res: Response) {

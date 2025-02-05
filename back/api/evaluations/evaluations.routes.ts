@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { EvaluationsController } from "./evaluations.controller";
+import { createEvaluationsMiddleware } from "@/middlewares/create-evaluations.middleware";
 
 const router = Router();
 
-router.post("/", EvaluationsController.createEvaluation);
+router.post("/", createEvaluationsMiddleware,  EvaluationsController.createEvaluation);
 
 router.get("/:id", EvaluationsController.getEvaluationById);
 
