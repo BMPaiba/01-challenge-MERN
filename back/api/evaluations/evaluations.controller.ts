@@ -12,10 +12,14 @@ export class EvaluationsController {
     }
   }
 
-  static getEvaluationById(req: Request, res: Response) {
+  static async getEvaluationById(req: Request, res: Response) {
     const { id } = req.params;
-    const result = EvaluationsService.getEvaluationById(id);
-    res.json(result);
+    try {
+      const evaluation =await  EvaluationsService.getEvaluationById(id);
+      res.json(evaluation);
+    } catch (error: any) {
+      res.status(400).json({ message: "Error al obtener la evaluación", error: error.message });
+    }
   }
 
   static updateEvaluation(req: Request, res: Response) {

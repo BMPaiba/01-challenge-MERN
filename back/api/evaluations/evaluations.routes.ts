@@ -4,15 +4,15 @@ import { createEvaluationsMiddleware } from "@/middlewares/create-evaluations.mi
 
 const router = Router();
 
-router.post("/", createEvaluationsMiddleware,  EvaluationsController.createEvaluation);
+router.post("/", createEvaluationsMiddleware, EvaluationsController.createEvaluation);
 
-router.get("/:id", EvaluationsController.getEvaluationById);
+router.get("/", EvaluationsController.getAllEvaluations);
+
+router.get("/:id",  EvaluationsController.getEvaluationById);
 
 router.put("/:id", EvaluationsController.updateEvaluation);
 
 router.get("/employee/:id", EvaluationsController.getEvaluationsByEmployeeId);
-
-router.get("/", EvaluationsController.getAllEvaluations);
 
 
 export default router;

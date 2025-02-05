@@ -1,4 +1,4 @@
-import { createEvaluationValidationSchema } from "@/validations/evaluations.validations";
+import { createEvaluationValidationSchema } from "@/validations/evaluations.validation";
 import type { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 
