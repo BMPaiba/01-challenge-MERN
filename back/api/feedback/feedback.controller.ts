@@ -3,9 +3,9 @@ import { FeedbackService } from "./feedback.service";
 
 export class FeedbackController {
   
-  static createFeedback(req: Request, res: Response) {
-    const { email, password } = req.body;
-    const result = FeedbackService.createFeedback(email, password);
+  static async createFeedback(req: Request, res: Response) {
+    const { evaluationId, message, givenBy } = req.body;
+    const result = await FeedbackService.createFeedback(evaluationId, message, givenBy);
     res.json(result);
   }
 
