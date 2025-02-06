@@ -15,18 +15,22 @@ export class EvaluationsController {
   static async getEvaluationById(req: Request, res: Response) {
     const { id } = req.params;
     try {
-      const evaluation =await  EvaluationsService.getEvaluationById(id);
+      const evaluation = await EvaluationsService.getEvaluationById(id);
       res.json(evaluation);
     } catch (error: any) {
       res.status(400).json({ message: "Error al obtener la evaluación", error: error.message });
     }
   }
 
-  static updateEvaluation(req: Request, res: Response) {
+  static async updateEvaluation(req: Request, res: Response) {
     const { id } = req.params;
-    const updatedData = req.body;
-    const result = EvaluationsService.updateEvaluation(id, updatedData);
-    res.json(result);
+    try {
+      const updatedData = req.body;
+      const result = await EvaluationsService.updateEvaluation(id, updatedData);
+      res.json(result);
+    } catch (error: any) {
+      res.status(400).json({ message: "Error al obtener la evaluación", error: error.message });
+    }
   }
 
   static getEvaluationsByEmployeeId(req: Request, res: Response) {
