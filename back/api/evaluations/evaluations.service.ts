@@ -51,8 +51,6 @@ export class EvaluationsService {
 
       const evaluation = await this.getEvaluationById(id);
 
-      console.log({ evaluation }); // Para ver qué devuelve la actualización
-
       if (result.matchedCount === 0) {
         throw new Error("No se encontró la evaluación para actualizar");
       }
@@ -69,8 +67,18 @@ export class EvaluationsService {
   }
 
 
-  static getEvaluationsByEmployeeId(id: string) {
-    return { message: `Lista de evaluaciones del empleado con ID ${id}` };
+  static async getEvaluationsByEmployeeId(id: string) {
+    try {
+      const evaluations = await evaluationModel.find({ employee: id });
+
+      if (!evaluations || evaluations.length === 0) {
+        throw new Error("No se encontraron evaluaciones para el empleado");
+      }
+
+      return evaluations;
+    } catch (error) {
+      throw new Error("Error al obtener las evaluaciones del empleado");
+    }
   }
 
   static getAllEvaluations() {

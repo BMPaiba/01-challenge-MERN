@@ -33,10 +33,14 @@ export class EvaluationsController {
     }
   }
 
-  static getEvaluationsByEmployeeId(req: Request, res: Response) {
+  static async getEvaluationsByEmployeeId(req: Request, res: Response) {
     const { id } = req.params;
-    const result = EvaluationsService.getEvaluationsByEmployeeId(id);
-    res.json(result);
+    try {
+      const result = await EvaluationsService.getEvaluationsByEmployeeId(id);
+      res.json(result);
+    } catch (error: any) {
+      res.status(400).json({ message: "Error al obtener la evaluación", error: error.message });
+    }
   }
 
   static getAllEvaluations(req: Request, res: Response) {
