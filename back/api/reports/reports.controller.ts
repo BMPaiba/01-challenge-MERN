@@ -3,9 +3,13 @@ import { ReportsService } from "./reports.service";
 
 export class ReportsController {
 
-  static reportByEmployeeId(req: Request, res: Response) {
-    const { email, password } = req.body;
-    const result = ReportsService.reportByEmployeeId(email, password);
-    res.json(result);
+  static async reportByEmployeeId(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      const report = await ReportsService.reportByEmployeeId(id);
+      res.json(report);
+    } catch (error) {
+      throw new Error("Error al obtener el reporte");
+    }
   }
 }

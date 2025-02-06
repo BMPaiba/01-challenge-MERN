@@ -13,9 +13,9 @@ const port = 3000;
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5173", // Especificar el origen permitido (frontend)
-  methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
-  allowedHeaders: ["Content-Type", "Authorization"], // Encabezados permitidos
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"], 
+  allowedHeaders: ["Content-Type", "Authorization"], 
 }));
 
 app.get("/", (req, res) => {
