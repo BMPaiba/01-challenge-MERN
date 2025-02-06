@@ -43,8 +43,4 @@ export class EvaluationsController {
     }
   }
 
-  static getAllEvaluations(req: Request, res: Response) {
-    const result = EvaluationsService.getAllEvaluations();
-    res.json(result);
-  }
 }

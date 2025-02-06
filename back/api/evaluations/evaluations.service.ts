@@ -80,8 +80,5 @@ export class EvaluationsService {
       throw new Error("Error al obtener las evaluaciones del empleado");
     }
   }
-
-  static getAllEvaluations() {
-    return { message: "Lista de todas las evaluaciones" };
-  }
+ 
 }

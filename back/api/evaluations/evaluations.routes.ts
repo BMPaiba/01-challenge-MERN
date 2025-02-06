@@ -6,13 +6,10 @@ const router = Router();
 
 router.post("/", createEvaluationsMiddleware, EvaluationsController.createEvaluation);
 
-router.get("/", EvaluationsController.getAllEvaluations);
-
 router.get("/:id",  EvaluationsController.getEvaluationById);
 
 router.put("/:id", EvaluationsController.updateEvaluation);
 
 router.get("/employee/:id", EvaluationsController.getEvaluationsByEmployeeId);
-
 
 export default router;
