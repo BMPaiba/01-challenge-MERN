@@ -16,8 +16,7 @@ const initialState: AuthState = (()=>{
   const persistedState = localStorage.getItem("_redux_state_");
   if (persistedState) {
     const state = JSON.parse(persistedState);
-    console.log({state})
-    return state.auth;
+    return state.auth ?? defaultState;
   }
   return defaultState
 })()
