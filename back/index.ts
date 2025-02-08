@@ -26,7 +26,7 @@ app.use("/api", apiRoutes);
 
 const startServer = async () => {
   try {
-    connectDB();
+    await connectDB();
     app.listen(port, () => console.log(`Server running on port:${port}`));
   } catch (error) {
     console.log(error);
